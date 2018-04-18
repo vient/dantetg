@@ -16,6 +16,8 @@ RUN set -xe \
         && curl -sSL $DANTE_URL -o $DANTE_FILE \
         && echo "$DANTE_SHA *$DANTE_FILE" | shasum -c \
         && tar xzf $DANTE_FILE --strip 1 \
+        && curl -sSL "https://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess;hb=HEAD" -o config.guess \
+        && curl -sSL "https://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub;hb=HEAD" -o config.sub \
         && ./configure \
         && make install \
         && cd .. \
